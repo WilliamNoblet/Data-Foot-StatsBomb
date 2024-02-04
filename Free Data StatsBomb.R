@@ -115,4 +115,82 @@ MatchesEvents <- StatsBombData %>%
   dplyr::select(-tactics.lineup)
 
 
-write.xlsx(MatchesEvents, 'Matches_Events_WC_2022.xlsx')
+ShotsEvents <- StatsBombData %>%
+  dplyr::filter(type.name == 'Shot') %>%
+  dplyr::select(
+    id, index, period, timestamp, minute, second, possession, duration, related_events,
+    location, under_pressure, off_camera, counterpress, out,type.id, type.name,
+    possession_team.id, possession_team.name,
+    play_pattern.id, play_pattern.name,
+    team.id, team.name, tactics.formation,
+    player.id, player.name, position.id, position.name,
+    location.x, location.y,
+    match_id, competition_id, season_id,
+    
+    shot.statsbomb_xg	,
+    shot.end_location, shot.first_time, shot.freeze_frame, shot.key_pass_id,
+    shot.one_on_one, shot.deflected, shot.open_goal, shot.aerial_won,
+    shot.technique.id, shot.technique.name, shot.body_part.id, shot.body_part.name,
+    shot.type.id, shot.type.name, shot.outcome.id, shot.outcome.name,
+    shot.end_location.x, shot.end_location.y, shot.end_location.z,
+    shot.follows_dribble, shot_impact_height,
+    
+    player.name.GK, player.id.GK, location.x.GK, location.y.GK, 
+    DistToGoal, DistToKeeper,
+    AngleToGoal, AngleToKeeper, AngleDeviation, avevelocity,
+    DistSGK, density, density.incone, distance.ToD1,
+    distance.ToD2, AttackersBehindBall, DefendersBehindBall, DefendersInCone,
+    InCone.GK, DefArea, distance.ToD1.360, distance.ToD2.360,
+    milliseconds, ElapsedTime, StartOfPossession, TimeInPoss,
+    TimeToPossEnd
+    )
+
+nrow(ShotsEvents)
+
+write.xlsx(ShotsEvents, 'ShotsEvents_WC_2022.xlsx')
+
+PassesEvents <- StatsBombData %>%
+  dplyr::filter(type.name == 'Pass') %>%
+  dplyr::select(
+    id, index, period, timestamp, minute, second, possession, duration, related_events,
+    location, under_pressure, off_camera, counterpress, out,type.id, type.name,
+    possession_team.id, possession_team.name,
+    play_pattern.id, play_pattern.name,
+    team.id, team.name, tactics.formation,
+    player.id, player.name, position.id, position.name,
+    location.x, location.y,
+    match_id, competition_id, season_id,
+    
+    pass.length, pass.angle, pass.end_location, pass.cross,
+    pass.assisted_shot_id, pass.shot_assist, pass.deflected, pass.aerial_won,
+    pass.switch, pass.outswinging, pass.cut_back, pass.goal_assist,
+    pass.through_ball, pass.miscommunication, pass.recipient.id, pass.recipient.name,
+    pass.height.id, pass.height.name, pass.body_part.id, pass.body_part.name,
+    pass.type.id, pass.type.name, pass.outcome.id, pass.outcome.name,
+    pass.technique.id, pass.technique.name, carry.end_location, ball_receipt.outcome.id,
+    pass.end_location.x, pass.end_location.y,
+    pass.no_touch, dribble.overrun,
+    pass.straight, pass.inswinging,
+    
+    player.name.GK, player.id.GK, location.x.GK, location.y.GK, 
+    DistToGoal, DistToKeeper,
+    AngleToGoal, AngleToKeeper, AngleDeviation, avevelocity,
+    DistSGK, density, density.incone, distance.ToD1,
+    distance.ToD2, AttackersBehindBall, DefendersBehindBall, DefendersInCone,
+    InCone.GK, DefArea, distance.ToD1.360, distance.ToD2.360,
+    milliseconds, ElapsedTime, StartOfPossession, TimeInPoss,
+    TimeToPossEnd
+  )
+
+nrow(PassesEvents)
+
+write.xlsx(PassesEvents, 'PassesEvents_WC_2022.xlsx')
+
+
+
+
+colnames(StatsBombData)
+
+
+
+
